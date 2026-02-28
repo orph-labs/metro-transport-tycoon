@@ -3,9 +3,9 @@ extends StaticBody2D
 var speed = 200
 var do_move_train = false
 
-signal send_train(signal)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$"../Button".send_train.connect(_send_train)
 	pass # Replace with function body.
 
 
@@ -15,12 +15,12 @@ func _process(delta: float) -> void:
 		position.x += speed * delta
 	pass
 
+func _send_train(send):
+		print("sending train")
+		do_move_train = true
+
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print("train entered")
 	do_move_train = false
 	pass # Replace with function body.
-
-
-func _send_train(send: Variant) -> void:
-	do_move_train = true
-	pass

@@ -1,0 +1,253 @@
+[gd_scene format=3 uid="uid://bxko12t6rr5yr"]
+
+[ext_resource type="Texture2D" uid="uid://co611fbk5q87v" path="res://rail.png" id="1_lyoih"]
+[ext_resource type="PackedScene" uid="uid://dtjt5xgljvxrs" path="res://character.tscn" id="2_o2ccw"]
+[ext_resource type="Script" uid="uid://bguhvmviabman" path="res://train_move.gd" id="3_mu84n"]
+[ext_resource type="Texture2D" uid="uid://co7s5rwg07lkl" path="res://train_front.png" id="4_bmsap"]
+[ext_resource type="Texture2D" uid="uid://cnhj2v6jb0qly" path="res://train.png" id="5_rqrji"]
+[ext_resource type="Texture2D" uid="uid://bi1bx6ta7k0it" path="res://train_back.png" id="6_8x87a"]
+[ext_resource type="Script" uid="uid://cyob7mcvof6de" path="res://train_move_lvl3.gd" id="7_bmsap"]
+[ext_resource type="Texture2D" uid="uid://crwrxyfc43k2e" path="res://sign.png" id="8_rqrji"]
+[ext_resource type="Texture2D" uid="uid://rfj7pgtb2sqe" path="res://crack1.png" id="9_ci4mn"]
+[ext_resource type="Texture2D" uid="uid://bknn44n7jubqg" path="res://crack2.png" id="10_sotx7"]
+
+[sub_resource type="GDScript" id="GDScript_o2ccw"]
+script/source = "extends Button
+
+@onready var TrackToFix = $\"../TrackToChange\"
+@onready var NextButton = $\"../Button2\"
+
+signal send_train(send)
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_pressed() -> void:
+	hide()
+	TrackToFix.show()
+	send_train.emit(true)
+	$Timer1.start()
+	pass # Replace with function body.
+"
+
+[sub_resource type="GDScript" id="GDScript_mu84n"]
+script/source = "extends Button
+
+@onready var TrackToFix = $\"../TrackToChange2\"
+# Called when the node enters the scene tree for the first time.
+signal send_train2()
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_pressed() -> void:
+	hide()
+	TrackToFix.show()
+	$Timer1.start()
+	send_train2.emit()
+	pass # Replace with function body.
+
+
+func _on_timer_1_timeout() -> void:
+	show()
+	pass # Replace with function body.
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ci4mn"]
+
+[sub_resource type="GDScript" id="GDScript_bmsap"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://end.tscn\")
+	pass # Replace with function body.
+
+
+func _on_timer_1_timeout() -> void:
+	show()
+	pass # Replace with function body.
+"
+
+[node name="Node2D" type="Node2D" unique_id=1331869992]
+
+[node name="Label2" type="Label" parent="." unique_id=1108663855]
+offset_left = 10.9999695
+offset_top = -3.0
+offset_right = 69.99997
+offset_bottom = 20.0
+scale = Vector2(3.3850002, 4.0118036)
+text = "LEVEL 3"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1703013059]
+position = Vector2(163, 294)
+texture = ExtResource("1_lyoih")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D" unique_id=2146148982]
+position = Vector2(-4, 228)
+texture = ExtResource("1_lyoih")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Sprite2D2" unique_id=108384140]
+position = Vector2(306, 0)
+texture = ExtResource("1_lyoih")
+
+[node name="CharacterBody2D" parent="." unique_id=492532085 instance=ExtResource("2_o2ccw")]
+position = Vector2(593, 401)
+
+[node name="TrackToChange" type="Sprite2D" parent="." unique_id=1744563446]
+visible = false
+position = Vector2(469, 294)
+texture = ExtResource("1_lyoih")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1574889451]
+position = Vector2(775, 294)
+texture = ExtResource("1_lyoih")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D3" unique_id=1547691846]
+position = Vector2(306, 0)
+texture = ExtResource("1_lyoih")
+
+[node name="TrackToChange2" type="Sprite2D" parent="." unique_id=1900266194]
+visible = false
+position = Vector2(771, 522)
+texture = ExtResource("1_lyoih")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=345656279]
+position = Vector2(1077, 522)
+texture = ExtResource("1_lyoih")
+
+[node name="Button" type="Button" parent="." unique_id=874199045]
+offset_left = 424.0
+offset_top = 289.0
+offset_right = 501.0
+offset_bottom = 320.0
+text = "Fix Track"
+script = SubResource("GDScript_o2ccw")
+
+[node name="Timer1" type="Timer" parent="Button" unique_id=1394505726]
+wait_time = 3.0
+one_shot = true
+
+[node name="Button2" type="Button" parent="." unique_id=652872539]
+visible = false
+offset_left = 749.0
+offset_top = 518.0
+offset_right = 826.0
+offset_bottom = 549.0
+text = "Fix Track"
+script = SubResource("GDScript_mu84n")
+
+[node name="Timer1" type="Timer" parent="Button2" unique_id=1451554996]
+wait_time = 3.0
+one_shot = true
+
+[node name="Train" type="StaticBody2D" parent="." unique_id=1231404379]
+z_index = 10
+position = Vector2(-328, 296)
+script = ExtResource("3_mu84n")
+
+[node name="Sprite2D" type="Sprite2D" parent="Train" unique_id=1477915661]
+position = Vector2(188, -22)
+texture = ExtResource("4_bmsap")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Train" unique_id=748576731]
+position = Vector2(-130, -30)
+texture = ExtResource("5_rqrji")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Train" unique_id=997039234]
+position = Vector2(-430, 9)
+texture = ExtResource("6_8x87a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Train" unique_id=1244770982]
+position = Vector2(306, 4)
+shape = SubResource("RectangleShape2D_ci4mn")
+
+[node name="Button3" type="Button" parent="." unique_id=1909912670]
+visible = false
+offset_left = 559.0
+offset_top = 408.0
+offset_right = 649.0
+offset_bottom = 439.0
+text = "Next Level"
+script = SubResource("GDScript_bmsap")
+
+[node name="Train2" type="StaticBody2D" parent="." unique_id=974364519]
+z_index = 10
+position = Vector2(-323, 524)
+script = ExtResource("7_bmsap")
+
+[node name="Sprite2D" type="Sprite2D" parent="Train2" unique_id=544310753]
+position = Vector2(188, -22)
+texture = ExtResource("4_bmsap")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Train2" unique_id=1907641545]
+position = Vector2(-130, -30)
+texture = ExtResource("5_rqrji")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Train2" unique_id=2013430887]
+position = Vector2(-430, 9)
+texture = ExtResource("6_8x87a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Train2" unique_id=989677707]
+position = Vector2(306, 4)
+shape = SubResource("RectangleShape2D_ci4mn")
+
+[node name="Label3" type="Label" parent="." unique_id=1277095026]
+offset_left = 342.99997
+offset_top = 6.0
+offset_right = 382.99997
+offset_bottom = 29.0
+scale = Vector2(3.3595207, 3.2147205)
+text = "OBJECTIVE
+Fix the tracks!"
+
+[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=644336122]
+position = Vector2(975, 80)
+texture = ExtResource("8_rqrji")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=271000804]
+position = Vector2(75.00003, 167)
+scale = Vector2(0.38959032, 0.26997188)
+texture = ExtResource("9_ci4mn")
+
+[node name="Sprite2D6" type="Sprite2D" parent="." unique_id=701110761]
+position = Vector2(898, 423)
+scale = Vector2(0.38959032, 0.26997188)
+texture = ExtResource("9_ci4mn")
+
+[node name="Sprite2D7" type="Sprite2D" parent="." unique_id=380392016]
+position = Vector2(162, 420)
+scale = Vector2(0.48000062, 0.48000062)
+texture = ExtResource("10_sotx7")
+
+[node name="Sprite2D8" type="Sprite2D" parent="." unique_id=969052303]
+position = Vector2(862, 89.999985)
+scale = Vector2(0.48000062, 0.48000062)
+texture = ExtResource("10_sotx7")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="timeout" from="Button/Timer1" to="Button2" method="_on_timer_1_timeout"]
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
+[connection signal="timeout" from="Button2/Timer1" to="Button3" method="_on_timer_1_timeout"]
+[connection signal="pressed" from="Button3" to="Button3" method="_on_pressed"]

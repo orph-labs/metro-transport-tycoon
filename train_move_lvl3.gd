@@ -1,10 +1,10 @@
 extends StaticBody2D
-signal send_train(signal)
+
 var speed = 200
 var do_move_train = false
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:signal send_train(true)
+func _ready() -> void:
 	$"../Button2".send_train2.connect(_send_train)
 	pass # Replace with function body.
 

@@ -2,7 +2,7 @@ extends StaticBody2D
 
 var speed = 200
 var do_move_train = false
-signal send_train(signal)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$"../Button".send_train.connect(_send_train)
