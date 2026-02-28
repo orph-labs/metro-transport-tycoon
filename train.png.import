@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://egcwiburh5sp"
-path="res://.godot/imported/tile-pattern-1.png-4bb9a9464dd0d7de98282aefec0a9f32.ctex"
+uid="uid://cnhj2v6jb0qly"
+path="res://.godot/imported/train.png-b7db28eee96542d3ee578e7d73962a20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/tile-pattern-1.png"
-dest_files=["res://.godot/imported/tile-pattern-1.png-4bb9a9464dd0d7de98282aefec0a9f32.ctex"]
+source_file="res://train.png"
+dest_files=["res://.godot/imported/train.png-b7db28eee96542d3ee578e7d73962a20.ctex"]
 
 [params]
 
