@@ -22,6 +22,7 @@ script/source = "extends Button
 
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -44,6 +45,34 @@ func _on_button_pressed() -> void:
 		print(\"track shown\")
 		print(TrackToBeChanged.visible)
 	send_train.emit(true)
+	$Timer1.start()
+	print(\"timer started\")
+	
+	pass # Replace with function body.
+"
+
+[sub_resource type="GDScript" id="GDScript_b26j0"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_timer_timeout() -> void:
+	print(\"timer timed out\")
+	show()
+	pass # Replace with function body.
+
+
+func _on_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://level2.tscn\")
 	pass # Replace with function body.
 "
 
@@ -124,6 +153,10 @@ text = "fix track"
 icon = SubResource("MeshTexture_2hs0m")
 script = SubResource("GDScript_2hs0m")
 
+[node name="Timer1" type="Timer" parent="Button" unique_id=544719264]
+wait_time = 8.0
+one_shot = true
+
 [node name="TrackToBeChanged" type="StaticBody2D" parent="." unique_id=128224641]
 visible = false
 position = Vector2(235, -105)
@@ -171,5 +204,16 @@ texture = ExtResource("8_b26j0")
 position = Vector2(373, -53)
 texture = ExtResource("9_b26j0")
 
+[node name="Button2" type="Button" parent="." unique_id=22042787]
+visible = false
+offset_left = -12.0
+offset_top = 138.0
+offset_right = -4.0
+offset_bottom = 146.0
+text = "Next level"
+script = SubResource("GDScript_b26j0")
+
 [connection signal="body_entered" from="Area2D" to="Train" method="_on_area_2d_body_entered_lvl1"]
 [connection signal="pressed" from="Button" to="Button" method="_on_button_pressed"]
+[connection signal="timeout" from="Button/Timer1" to="Button2" method="_on_timer_timeout"]
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
