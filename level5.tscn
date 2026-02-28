@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://bfx4ex01fpya1" path="res://rail-flipped.png" id="2_bf6rn"]
 [ext_resource type="Texture2D" uid="uid://ddoa1ft25pgqc" path="res://rail-with-buffer.png" id="3_qmr0j"]
 [ext_resource type="Texture2D" uid="uid://5va5glvox1aw" path="res://rail-with-buffer-flipped.png" id="4_qmr0j"]
-[ext_resource type="Script" uid="uid://bguhvmviabman" path="res://train_move.gd" id="5_87x5k"]
+[ext_resource type="Script" uid="uid://dltjpdtbqf3at" path="res://train_1.gd" id="5_p3j2p"]
 [ext_resource type="Texture2D" uid="uid://co7s5rwg07lkl" path="res://train_front.png" id="6_yfwe1"]
 [ext_resource type="Texture2D" uid="uid://cnhj2v6jb0qly" path="res://train.png" id="7_p3j2p"]
 [ext_resource type="Texture2D" uid="uid://bi1bx6ta7k0it" path="res://train_back.png" id="8_mpwkm"]
-[ext_resource type="Script" path="res://train_2.gd" id="9_yfwe1"]
+[ext_resource type="Script" uid="uid://csqkyw6u2evy5" path="res://train_2.gd" id="9_yfwe1"]
 [ext_resource type="PackedScene" uid="uid://dtjt5xgljvxrs" path="res://character.tscn" id="10_p3j2p"]
 
 [sub_resource type="GDScript" id="GDScript_x2odi"]
@@ -177,7 +177,7 @@ one_shot = true
 [node name="Train1" type="StaticBody2D" parent="." unique_id=1857948984]
 z_index = 10
 position = Vector2(-324, 366)
-script = ExtResource("5_87x5k")
+script = ExtResource("5_p3j2p")
 
 [node name="Sprite2D" type="Sprite2D" parent="Train1" unique_id=1853900631]
 position = Vector2(188, -22)
@@ -220,11 +220,11 @@ shape = SubResource("RectangleShape2D_rlwt4")
 position = Vector2(1016, 271)
 
 [connection signal="send_train1" from="." to="." method="_on_send_train_1"]
-[connection signal="send_train1" from="." to="Train1" method="_send_train1"]
 [connection signal="send_train1" from="." to="Train1" method="_on_node_2d_send_train_1"]
-[connection signal="send_train1" from="." to="Train2" method="_send_train2"]
-[connection signal="send_train1" from="." to="Train2" method="_on_node_2d_send_train_1"]
+[connection signal="send_train1" from="." to="Train1" method="_send_train1"]
 [connection signal="send_train1" from="." to="Train2" method="_on_node_2d_send_train_2"]
+[connection signal="send_train1" from="." to="Train2" method="_on_node_2d_send_train_1"]
+[connection signal="send_train1" from="." to="Train2" method="_send_train2"]
 [connection signal="Buffer1fixed" from="Button2" to="." method="_on_button_2_buffer_1_fixed"]
 [connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
 [connection signal="Buffer2fixed" from="Button" to="." method="_on_button_buffer_2_fixed"]
