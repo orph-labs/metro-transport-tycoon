@@ -76,3 +76,11 @@ position = Vector2(1451, -81)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1413165118]
 position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_1jxqw")
+
+[node name="Label" type="Label" parent="." unique_id=899504221]
+offset_left = -513.0
+offset_top = -203.0
+offset_right = -454.0
+offset_bottom = -180.0
+scale = Vector2(6.5200005, 6.5200005)
+text = "LEVEL 1"
