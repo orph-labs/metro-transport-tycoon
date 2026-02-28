@@ -3,9 +3,13 @@
 [ext_resource type="Script" uid="uid://41jo5nwg5c3w" path="res://character_body_2d.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://o4r5b4aptryt" path="res://player.png" id="2_onrkg"]
 [ext_resource type="Texture2D" uid="uid://co611fbk5q87v" path="res://rail.png" id="3_i3pqv"]
+[ext_resource type="Script" uid="uid://bguhvmviabman" path="res://train_move.gd" id="4_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://co7s5rwg07lkl" path="res://train_front.png" id="4_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://cnhj2v6jb0qly" path="res://train.png" id="5_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://bi1bx6ta7k0it" path="res://train_back.png" id="6_dw050"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1jxqw"]
+size = Vector2(185, 158)
 
 [node name="Node2D" type="Node2D" unique_id=1808936393]
 position = Vector2(562, 319)
@@ -51,7 +55,8 @@ position = Vector2(319, 0)
 texture = ExtResource("3_i3pqv")
 
 [node name="Train" type="StaticBody2D" parent="." unique_id=305883468]
-position = Vector2(238, -105)
+position = Vector2(-916, -105)
+script = ExtResource("4_1jxqw")
 
 [node name="Sprite2D" type="Sprite2D" parent="Train" unique_id=217618026]
 position = Vector2(188, -22)
@@ -64,3 +69,10 @@ texture = ExtResource("5_1jxqw")
 [node name="Sprite2D3" type="Sprite2D" parent="Train" unique_id=1376806500]
 position = Vector2(-430, 9)
 texture = ExtResource("6_dw050")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1708139432]
+position = Vector2(1451, -81)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1413165118]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_1jxqw")
