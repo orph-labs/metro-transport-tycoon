@@ -1,8 +1,49 @@
-[gd_scene format=3 uid="uid://cb1js24uctq0a"]
+[gd_scene format=3 uid="uid://b6fs2gnbeiqhk"]
 
 [ext_resource type="PackedScene" uid="uid://dtjt5xgljvxrs" path="res://character.tscn" id="1_y0xe8"]
 [ext_resource type="Texture2D" uid="uid://co611fbk5q87v" path="res://rail.png" id="2_6q4t8"]
 [ext_resource type="Texture2D" uid="uid://ddoa1ft25pgqc" path="res://rail-with-buffer.png" id="3_8tcn8"]
+[ext_resource type="Script" uid="uid://bguhvmviabman" path="res://train_move.gd" id="4_8i3m3"]
+[ext_resource type="Texture2D" uid="uid://co7s5rwg07lkl" path="res://train_front.png" id="5_rmy57"]
+[ext_resource type="Texture2D" uid="uid://cnhj2v6jb0qly" path="res://train.png" id="6_qulpo"]
+[ext_resource type="Texture2D" uid="uid://bi1bx6ta7k0it" path="res://train_back.png" id="7_jifot"]
+
+[sub_resource type="GDScript" id="GDScript_6q4t8"]
+script/source = "extends Button
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	print(\"script ran\")
+	pass # Replace with function body.
+
+@onready var TrackToBeChanged = $\"../TrackToBeChanged\"
+signal send_train(send)
+# Called every frame. 'delta' is thet =lapsed time since the previous frame.
+func _process(delta: float) -> void:
+	
+	
+	
+		
+	pass
+
+
+func _on_button_pressed() -> void:
+	print(\"button pressed\")
+	hide()
+	if TrackToBeChanged:
+		TrackToBeChanged.show()
+		print(\"track shown\")
+		print(TrackToBeChanged.visible)
+	send_train.emit(true)
+	pass # Replace with function body.
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6q4t8"]
+size = Vector2(15, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8i3m3"]
 
 [node name="Node2D" type="Node2D" unique_id=492354172]
 
@@ -33,10 +74,50 @@ trains terminate here"
 position = Vector2(478, 289)
 texture = ExtResource("2_6q4t8")
 
-[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=477939460]
+[node name="TrackToBeChanged" type="Sprite2D" parent="." unique_id=477939460]
+visible = false
 position = Vector2(974, 289)
 texture = ExtResource("3_8tcn8")
 
 [node name="Sprite2D4" type="Sprite2D" parent="." unique_id=1238704371]
 position = Vector2(656, 289)
 texture = ExtResource("2_6q4t8")
+
+[node name="Button" type="Button" parent="." unique_id=615232307]
+offset_left = 940.0
+offset_top = 288.0
+offset_right = 1031.0
+offset_bottom = 319.0
+text = "Add buffer"
+script = SubResource("GDScript_6q4t8")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=202569608]
+position = Vector2(1073, 301)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1030146379]
+position = Vector2(2.5, 0)
+shape = SubResource("RectangleShape2D_6q4t8")
+
+[node name="Train" type="StaticBody2D" parent="." unique_id=1205407891]
+z_index = 10
+position = Vector2(-324, 289)
+script = ExtResource("4_8i3m3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Train" unique_id=1523389769]
+position = Vector2(188, -22)
+texture = ExtResource("5_rmy57")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Train" unique_id=1637269235]
+position = Vector2(-130, -30)
+texture = ExtResource("6_qulpo")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Train" unique_id=414077363]
+position = Vector2(-430, 9)
+texture = ExtResource("7_jifot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Train" unique_id=162573102]
+position = Vector2(315, 0)
+shape = SubResource("RectangleShape2D_8i3m3")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_button_pressed"]
+[connection signal="body_entered" from="Area2D" to="Train" method="_on_area_2d_body_entered"]

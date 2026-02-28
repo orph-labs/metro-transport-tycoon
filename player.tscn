@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://cnhj2v6jb0qly" path="res://train.png" id="5_1jxqw"]
 [ext_resource type="PackedScene" uid="uid://dtjt5xgljvxrs" path="res://character.tscn" id="6_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://bi1bx6ta7k0it" path="res://train_back.png" id="6_dw050"]
+[ext_resource type="Texture2D" uid="uid://rfj7pgtb2sqe" path="res://crack1.png" id="7_dw050"]
+[ext_resource type="Texture2D" uid="uid://bknn44n7jubqg" path="res://crack2.png" id="8_b26j0"]
+[ext_resource type="Texture2D" uid="uid://crwrxyfc43k2e" path="res://sign.png" id="9_b26j0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7ghd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jxqw"]
 size = Vector2(185, 158)
@@ -78,6 +83,10 @@ texture = ExtResource("5_1jxqw")
 position = Vector2(-430, 9)
 texture = ExtResource("6_dw050")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Train" unique_id=1728301653]
+position = Vector2(306, 4)
+shape = SubResource("RectangleShape2D_n7ghd")
+
 [node name="Area2D" type="Area2D" parent="." unique_id=1708139432]
 position = Vector2(1451, -81)
 
@@ -86,10 +95,10 @@ position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_1jxqw")
 
 [node name="Label" type="Label" parent="." unique_id=899504221]
-offset_left = -554.0
-offset_top = -306.0
-offset_right = -495.0
-offset_bottom = -283.0
+offset_left = -536.0
+offset_top = -295.0
+offset_right = -477.0
+offset_bottom = -272.0
 scale = Vector2(2.8000002, 2.8000002)
 text = "LEVEL 1"
 
@@ -141,4 +150,26 @@ position = Vector2(-319, 0)
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2/StaticBody2D" unique_id=959222626]
 texture = ExtResource("3_i3pqv")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=129934529]
+position = Vector2(-310, -223)
+scale = Vector2(0.29375, 0.29375)
+texture = ExtResource("7_dw050")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=629513877]
+position = Vector2(473, 274)
+scale = Vector2(0.38959032, 0.26997188)
+texture = ExtResource("7_dw050")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1825927172]
+position = Vector2(-451, 215)
+scale = Vector2(0.48000062, 0.48000062)
+texture = ExtResource("8_b26j0")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=369435233]
+
+[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=2017234519]
+position = Vector2(373, -53)
+texture = ExtResource("9_b26j0")
+
+[connection signal="body_entered" from="Area2D" to="Train" method="_on_area_2d_body_entered_lvl1"]
 [connection signal="pressed" from="Button" to="Button" method="_on_button_pressed"]

@@ -18,3 +18,9 @@ func _process(delta: float) -> void:
 func _send_train(send):
 		print("sending train")
 		do_move_train = true
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("train entered")
+	do_move_train = false
+	pass # Replace with function body.
