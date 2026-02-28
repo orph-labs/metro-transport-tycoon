@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://co7s5rwg07lkl" path="res://train_front.png" id="5_rmy57"]
 [ext_resource type="Texture2D" uid="uid://cnhj2v6jb0qly" path="res://train.png" id="6_qulpo"]
 [ext_resource type="Texture2D" uid="uid://bi1bx6ta7k0it" path="res://train_back.png" id="7_jifot"]
+[ext_resource type="Texture2D" uid="uid://crwrxyfc43k2e" path="res://sign.png" id="8_rmy57"]
+[ext_resource type="Texture2D" uid="uid://rfj7pgtb2sqe" path="res://crack1.png" id="9_qulpo"]
+[ext_resource type="Texture2D" uid="uid://bknn44n7jubqg" path="res://crack2.png" id="10_jifot"]
 
 [sub_resource type="GDScript" id="GDScript_6q4t8"]
 script/source = "extends Button
@@ -159,6 +162,20 @@ offset_right = 499.0
 offset_bottom = 501.0
 text = "Next level"
 script = SubResource("GDScript_8i3m3")
+
+[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=933845229]
+position = Vector2(238, 356)
+texture = ExtResource("8_rmy57")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=912958666]
+position = Vector2(995, 156)
+scale = Vector2(0.38959032, 0.26997188)
+texture = ExtResource("9_qulpo")
+
+[node name="Sprite2D6" type="Sprite2D" parent="." unique_id=223382112]
+position = Vector2(114, 171.99998)
+scale = Vector2(0.48000062, 0.48000062)
+texture = ExtResource("10_jifot")
 
 [connection signal="pressed" from="Button" to="Button" method="_on_button_pressed"]
 [connection signal="timeout" from="Button/Timer1" to="Button2" method="_on_timer_1_timeout"]

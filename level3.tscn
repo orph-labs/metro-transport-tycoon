@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cnhj2v6jb0qly" path="res://train.png" id="5_rqrji"]
 [ext_resource type="Texture2D" uid="uid://bi1bx6ta7k0it" path="res://train_back.png" id="6_8x87a"]
 [ext_resource type="Script" uid="uid://cyob7mcvof6de" path="res://train_move_lvl3.gd" id="7_bmsap"]
+[ext_resource type="Texture2D" uid="uid://crwrxyfc43k2e" path="res://sign.png" id="8_rqrji"]
+[ext_resource type="Texture2D" uid="uid://rfj7pgtb2sqe" path="res://crack1.png" id="9_ci4mn"]
+[ext_resource type="Texture2D" uid="uid://bknn44n7jubqg" path="res://crack2.png" id="10_sotx7"]
 
 [sub_resource type="GDScript" id="GDScript_o2ccw"]
 script/source = "extends Button
@@ -78,7 +81,7 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	
+	get_tree().change_scene_to_file(\"res://end.tscn\")
 	pass # Replace with function body.
 
 
@@ -218,6 +221,30 @@ offset_bottom = 29.0
 scale = Vector2(3.3595207, 3.2147205)
 text = "OBJECTIVE
 Fix the tracks!"
+
+[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=644336122]
+position = Vector2(975, 80)
+texture = ExtResource("8_rqrji")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=271000804]
+position = Vector2(75.00003, 167)
+scale = Vector2(0.38959032, 0.26997188)
+texture = ExtResource("9_ci4mn")
+
+[node name="Sprite2D6" type="Sprite2D" parent="." unique_id=701110761]
+position = Vector2(898, 423)
+scale = Vector2(0.38959032, 0.26997188)
+texture = ExtResource("9_ci4mn")
+
+[node name="Sprite2D7" type="Sprite2D" parent="." unique_id=380392016]
+position = Vector2(162, 420)
+scale = Vector2(0.48000062, 0.48000062)
+texture = ExtResource("10_sotx7")
+
+[node name="Sprite2D8" type="Sprite2D" parent="." unique_id=969052303]
+position = Vector2(862, 89.999985)
+scale = Vector2(0.48000062, 0.48000062)
+texture = ExtResource("10_sotx7")
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
 [connection signal="timeout" from="Button/Timer1" to="Button2" method="_on_timer_1_timeout"]
