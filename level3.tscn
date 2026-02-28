@@ -1,3 +1,45 @@
 [gd_scene format=3 uid="uid://bxko12t6rr5yr"]
 
+[ext_resource type="Texture2D" uid="uid://co611fbk5q87v" path="res://rail.png" id="1_lyoih"]
+
 [node name="Node2D" type="Node2D" unique_id=1331869992]
+
+[node name="Label2" type="Label" parent="." unique_id=1108663855]
+offset_left = 10.9999695
+offset_top = -3.0
+offset_right = 69.99997
+offset_bottom = 20.0
+scale = Vector2(3.3850002, 4.0118036)
+text = "LEVEL 3"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1703013059]
+position = Vector2(163, 294)
+texture = ExtResource("1_lyoih")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1744563446]
+position = Vector2(306, 0)
+texture = ExtResource("1_lyoih")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Sprite2D" unique_id=1574889451]
+position = Vector2(306, 0)
+texture = ExtResource("1_lyoih")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Sprite2D/Sprite2D" unique_id=1547691846]
+position = Vector2(306, 0)
+texture = ExtResource("1_lyoih")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D" unique_id=2146148982]
+position = Vector2(-4, 228)
+texture = ExtResource("1_lyoih")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Sprite2D2" unique_id=108384140]
+position = Vector2(306, 0)
+texture = ExtResource("1_lyoih")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Sprite2D2/Sprite2D" unique_id=1900266194]
+position = Vector2(306, 0)
+texture = ExtResource("1_lyoih")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Sprite2D2/Sprite2D/Sprite2D" unique_id=345656279]
+position = Vector2(306, 0)
+texture = ExtResource("1_lyoih")
