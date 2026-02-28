@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crw1bbddirn0l"
-path="res://.godot/imported/end-rail.png-95ebcb600b28823af08590ce8d7eb6a8.ctex"
+uid="uid://c13ey4l6lc3oc"
+path="res://.godot/imported/buffer.png-2d99f63390bbb05b2637d1893b8e6328.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://end-rail.png"
-dest_files=["res://.godot/imported/end-rail.png-95ebcb600b28823af08590ce8d7eb6a8.ctex"]
+source_file="res://buffer.png"
+dest_files=["res://.godot/imported/buffer.png-2d99f63390bbb05b2637d1893b8e6328.ctex"]
 
 [params]
 
