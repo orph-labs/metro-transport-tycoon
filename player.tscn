@@ -213,8 +213,6 @@ offset_bottom = 146.0
 text = "Next level"
 script = SubResource("GDScript_b26j0")
 
-[node name="Sprite2D6" type="Sprite2D" parent="." unique_id=820701513]
-
 [connection signal="body_entered" from="Area2D" to="Train" method="_on_area_2d_body_entered_lvl1"]
 [connection signal="pressed" from="Button" to="Button" method="_on_button_pressed"]
 [connection signal="timeout" from="Button/Timer1" to="Button2" method="_on_timer_timeout"]
