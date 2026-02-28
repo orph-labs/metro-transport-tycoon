@@ -1,26 +1,45 @@
 [gd_scene format=3 uid="uid://ban1ptrgubuce"]
 
-[ext_resource type="Script" uid="uid://41jo5nwg5c3w" path="res://character_body_2d.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" path="res://player.png" id="2_onrkg"]
-[ext_resource type="Texture2D" path="res://rail.png" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://co611fbk5q87v" path="res://rail.png" id="3_i3pqv"]
 [ext_resource type="Script" uid="uid://bguhvmviabman" path="res://train_move.gd" id="4_1jxqw"]
-[ext_resource type="Texture2D" path="res://train_front.png" id="4_2hs0m"]
-[ext_resource type="Texture2D" path="res://train.png" id="5_1jxqw"]
-[ext_resource type="Texture2D" path="res://train_back.png" id="6_dw050"]
+[ext_resource type="Texture2D" uid="uid://co7s5rwg07lkl" path="res://train_front.png" id="4_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://cnhj2v6jb0qly" path="res://train.png" id="5_1jxqw"]
+[ext_resource type="PackedScene" uid="uid://dtjt5xgljvxrs" path="res://character.tscn" id="6_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://bi1bx6ta7k0it" path="res://train_back.png" id="6_dw050"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jxqw"]
 size = Vector2(185, 158)
 
+[sub_resource type="MeshTexture" id="MeshTexture_2hs0m"]
+
+[sub_resource type="GDScript" id="GDScript_2hs0m"]
+script/source = "extends Button
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+@onready
+var TrackToBeChanged = $\"../TrackToBeChanged\"
+
+# Called every frame. 'delta' is thet =lapsed time since the previous frame.
+func _process(delta: float) -> void:
+	hide()
+	TrackToBeChanged.show()
+	
+	
+		
+	pass
+
+
+func _on_button_pressed() -> void:
+	set_process(not is_processing())
+	pass # Replace with function body.
+"
+
 [node name="Node2D" type="Node2D" unique_id=1808936393]
 position = Vector2(562, 319)
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1297529044]
-script = ExtResource("1_onrkg")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1787095315]
-texture = ExtResource("2_onrkg")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=181132916]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1888771238]
 position = Vector2(-402, -105)
@@ -36,22 +55,6 @@ position = Vector2(319, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D" unique_id=1197001616]
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/StaticBody2D" unique_id=376484773]
-texture = ExtResource("3_i3pqv")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D/StaticBody2D" unique_id=128224641]
-position = Vector2(319, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D/StaticBody2D" unique_id=1838592174]
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/StaticBody2D/StaticBody2D" unique_id=681329595]
-texture = ExtResource("3_i3pqv")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D/StaticBody2D/StaticBody2D" unique_id=339697651]
-position = Vector2(319, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D/StaticBody2D/StaticBody2D" unique_id=25353880]
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/StaticBody2D/StaticBody2D/StaticBody2D" unique_id=1782216279]
 texture = ExtResource("3_i3pqv")
 
 [node name="Train" type="StaticBody2D" parent="." unique_id=305883468]
@@ -93,3 +96,39 @@ offset_bottom = -248.0
 scale = Vector2(2.8, 2.8)
 text = "OBJECTIVE
 Finish the subway track"
+
+[node name="CharacterBody2D2" parent="." unique_id=492532085 instance=ExtResource("6_2hs0m")]
+
+[node name="Button" type="Button" parent="." unique_id=1203919744]
+offset_left = 197.0
+offset_top = -100.0
+offset_right = 272.0
+offset_bottom = -69.0
+scale = Vector2(0.9773039, 0.95561457)
+text = "fix track"
+icon = SubResource("MeshTexture_2hs0m")
+script = SubResource("GDScript_2hs0m")
+
+[node name="TrackToBeChanged" type="StaticBody2D" parent="." unique_id=128224641]
+position = Vector2(236, -105)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrackToBeChanged" unique_id=1838592174]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TrackToBeChanged" unique_id=339697651]
+position = Vector2(319, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrackToBeChanged/StaticBody2D" unique_id=25353880]
+
+[node name="Sprite2D" type="Sprite2D" parent="TrackToBeChanged/StaticBody2D" unique_id=1782216279]
+texture = ExtResource("3_i3pqv")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TrackToBeChanged/StaticBody2D" unique_id=1860636931]
+visible = false
+position = Vector2(-319, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrackToBeChanged/StaticBody2D/StaticBody2D" unique_id=18375378]
+
+[node name="Sprite2D" type="Sprite2D" parent="TrackToBeChanged/StaticBody2D/StaticBody2D" unique_id=959222626]
+texture = ExtResource("3_i3pqv")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_button_pressed"]
