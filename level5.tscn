@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dst0jdrpn8j6p"]
+[gd_scene format=3 uid="uid://c1d6fmb5ve48u"]
 
 [ext_resource type="Texture2D" uid="uid://co611fbk5q87v" path="res://rail.png" id="1_t4tfv"]
 [ext_resource type="Texture2D" uid="uid://bfx4ex01fpya1" path="res://rail-flipped.png" id="2_bf6rn"]
@@ -8,7 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://co7s5rwg07lkl" path="res://train_front.png" id="6_yfwe1"]
 [ext_resource type="Texture2D" uid="uid://cnhj2v6jb0qly" path="res://train.png" id="7_p3j2p"]
 [ext_resource type="Texture2D" uid="uid://bi1bx6ta7k0it" path="res://train_back.png" id="8_mpwkm"]
-[ext_resource type="Script" uid="uid://csqkyw6u2evy5" path="res://train_2.gd" id="9_yfwe1"]
+[ext_resource type="Script" path="res://train_2.gd" id="9_yfwe1"]
+[ext_resource type="PackedScene" uid="uid://dtjt5xgljvxrs" path="res://character.tscn" id="10_p3j2p"]
 
 [sub_resource type="GDScript" id="GDScript_x2odi"]
 resource_name = "main"
@@ -88,6 +89,12 @@ func _on_pressed() -> void:
 		Buffer2.show()
 		print(Buffer2.visible)
 	Buffer2fixed.emit(true)
+	$Timer1.start()
+	pass # Replace with function body.
+
+
+func _on_timer_timeout() -> void:
+	get_tree().change_scene_to_file(\"res://end.tscn\")
 	pass # Replace with function body.
 "
 
@@ -163,6 +170,10 @@ scale = Vector2(1.5285211, 1.532452)
 text = "Add buffer"
 script = SubResource("GDScript_qmr0j")
 
+[node name="Timer1" type="Timer" parent="Button" unique_id=1358585663]
+wait_time = 6.7
+one_shot = true
+
 [node name="Train1" type="StaticBody2D" parent="." unique_id=1857948984]
 z_index = 10
 position = Vector2(-324, 366)
@@ -205,13 +216,17 @@ texture = ExtResource("8_mpwkm")
 position = Vector2(315, 0)
 shape = SubResource("RectangleShape2D_rlwt4")
 
+[node name="CharacterBody2D" parent="." unique_id=492532085 instance=ExtResource("10_p3j2p")]
+position = Vector2(1016, 271)
+
 [connection signal="send_train1" from="." to="." method="_on_send_train_1"]
 [connection signal="send_train1" from="." to="Train1" method="_send_train1"]
 [connection signal="send_train1" from="." to="Train1" method="_on_node_2d_send_train_1"]
 [connection signal="send_train1" from="." to="Train2" method="_send_train2"]
-[connection signal="send_train1" from="." to="Train2" method="_on_node_2d_send_train_2"]
 [connection signal="send_train1" from="." to="Train2" method="_on_node_2d_send_train_1"]
+[connection signal="send_train1" from="." to="Train2" method="_on_node_2d_send_train_2"]
 [connection signal="Buffer1fixed" from="Button2" to="." method="_on_button_2_buffer_1_fixed"]
 [connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
 [connection signal="Buffer2fixed" from="Button" to="." method="_on_button_buffer_2_fixed"]
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="timeout" from="Button/Timer1" to="Button" method="_on_timer_timeout"]
