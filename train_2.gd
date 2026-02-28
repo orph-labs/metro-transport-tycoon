@@ -20,6 +20,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	pass # Replace with function body.
 
 
-func _send_train1(send: Variant) -> void:
+func _send_train2(send: Variant) -> void:
 	do_move_train = true
 	pass

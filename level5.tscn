@@ -1,0 +1,217 @@
+[gd_scene format=3 uid="uid://dst0jdrpn8j6p"]
+
+[ext_resource type="Texture2D" uid="uid://co611fbk5q87v" path="res://rail.png" id="1_t4tfv"]
+[ext_resource type="Texture2D" uid="uid://bfx4ex01fpya1" path="res://rail-flipped.png" id="2_bf6rn"]
+[ext_resource type="Texture2D" uid="uid://ddoa1ft25pgqc" path="res://rail-with-buffer.png" id="3_qmr0j"]
+[ext_resource type="Texture2D" uid="uid://5va5glvox1aw" path="res://rail-with-buffer-flipped.png" id="4_qmr0j"]
+[ext_resource type="Script" uid="uid://bguhvmviabman" path="res://train_move.gd" id="5_87x5k"]
+[ext_resource type="Texture2D" uid="uid://co7s5rwg07lkl" path="res://train_front.png" id="6_yfwe1"]
+[ext_resource type="Texture2D" uid="uid://cnhj2v6jb0qly" path="res://train.png" id="7_p3j2p"]
+[ext_resource type="Texture2D" uid="uid://bi1bx6ta7k0it" path="res://train_back.png" id="8_mpwkm"]
+[ext_resource type="Script" uid="uid://csqkyw6u2evy5" path="res://train_2.gd" id="9_yfwe1"]
+
+[sub_resource type="GDScript" id="GDScript_x2odi"]
+resource_name = "main"
+script/source = "extends Node2D
+var buffer1fixed:bool = false
+var buffer2fixed:bool = false
+
+signal send_train1(send)
+signal send_train2(send)
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if buffer1fixed == true && buffer2fixed == true:
+		send_train1.emit(true)
+		send_train2.emit(true)
+		print(\"sending train\")
+		send_train1.emit(true)
+		send_train2.emit(true)
+		set_process(false)
+func _on_button_2_buffer_1_fixed(status: Variant) -> void:
+	buffer1fixed = true
+	pass
+
+
+func _on_button_buffer_2_fixed(status: Variant) -> void:
+	buffer2fixed = true
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_bf6rn"]
+resource_name = "buffer1"
+script/source = "extends Button
+
+@onready var Buffer1 = $\"../Buffer1\"
+
+signal Buffer1fixed(status)
+
+func _ready() -> void:
+	print(\"ok\")
+	pass
+
+func _process(_delta: float) -> void:
+	pass
+
+func _on_pressed() -> void:
+	hide()
+	if Buffer1:
+		Buffer1.show()
+		print(Buffer1.visible)
+	Buffer1fixed.emit(true)
+	pass # Replace with function body.
+"
+
+[sub_resource type="GDScript" id="GDScript_qmr0j"]
+resource_name = "buffer2"
+script/source = "extends Button
+
+@onready var Buffer2 = $\"../Buffer2\"
+
+signal Buffer2fixed(status)
+
+func _ready() -> void:
+	print(\"ok\")
+	pass
+
+func _process(_delta: float) -> void:
+	pass
+
+func _on_pressed() -> void:
+	hide()
+	if Buffer2:
+		Buffer2.show()
+		print(Buffer2.visible)
+	Buffer2fixed.emit(true)
+	pass # Replace with function body.
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlwt4"]
+
+[node name="Node2D" type="Node2D" unique_id=340160773]
+script = SubResource("GDScript_x2odi")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=564370217]
+position = Vector2(479, 197)
+texture = ExtResource("1_t4tfv")
+
+[node name="Label" type="Label" parent="." unique_id=1781892585]
+offset_right = 59.0
+offset_bottom = 23.0
+scale = Vector2(2.941032, 2.8553908)
+text = "LEVEL 4"
+
+[node name="Label2" type="Label" parent="." unique_id=28273999]
+offset_left = 309.0
+offset_top = 5.0
+offset_right = 590.0
+offset_bottom = 54.0
+scale = Vector2(2.2517986, 2.3829787)
+text = "Add 2 buffers to the end of the track
+to allow more trains to terminate"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1833094973]
+position = Vector2(159, 197)
+texture = ExtResource("1_t4tfv")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=423379853]
+position = Vector2(659, 197)
+texture = ExtResource("1_t4tfv")
+
+[node name="Buffer1" type="Sprite2D" parent="." unique_id=505323217]
+visible = false
+position = Vector2(978, 197)
+texture = ExtResource("3_qmr0j")
+
+[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=1096697797]
+position = Vector2(161, 372)
+texture = ExtResource("2_bf6rn")
+
+[node name="Sprite2D6" type="Sprite2D" parent="." unique_id=1222675603]
+position = Vector2(481, 372)
+texture = ExtResource("2_bf6rn")
+
+[node name="Sprite2D7" type="Sprite2D" parent="." unique_id=1630613167]
+position = Vector2(661, 372)
+texture = ExtResource("2_bf6rn")
+
+[node name="Buffer2" type="Sprite2D" parent="." unique_id=1945505635]
+visible = false
+position = Vector2(980, 372)
+texture = ExtResource("4_qmr0j")
+
+[node name="Button2" type="Button" parent="." unique_id=726306250]
+offset_left = 913.00006
+offset_top = 178.00002
+offset_right = 1009.00006
+offset_bottom = 209.00002
+scale = Vector2(1.5026394, 1.6285851)
+text = "Add buffer"
+script = SubResource("GDScript_bf6rn")
+
+[node name="Button" type="Button" parent="." unique_id=1324007638]
+offset_left = 915.0
+offset_top = 353.0
+offset_right = 1006.0
+offset_bottom = 384.0
+scale = Vector2(1.5285211, 1.532452)
+text = "Add buffer"
+script = SubResource("GDScript_qmr0j")
+
+[node name="Train1" type="StaticBody2D" parent="." unique_id=1857948984]
+z_index = 10
+position = Vector2(-324, 366)
+script = ExtResource("5_87x5k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Train1" unique_id=1853900631]
+position = Vector2(188, -22)
+texture = ExtResource("6_yfwe1")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Train1" unique_id=1681093155]
+position = Vector2(-130, -30)
+texture = ExtResource("7_p3j2p")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Train1" unique_id=181324721]
+position = Vector2(-430, 9)
+texture = ExtResource("8_mpwkm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Train1" unique_id=1337063099]
+position = Vector2(315, 0)
+shape = SubResource("RectangleShape2D_rlwt4")
+
+[node name="Train2" type="StaticBody2D" parent="." unique_id=1880752604]
+z_index = 10
+position = Vector2(-327, 209)
+script = ExtResource("9_yfwe1")
+
+[node name="Sprite2D" type="Sprite2D" parent="Train2" unique_id=733003772]
+position = Vector2(188, -22)
+texture = ExtResource("6_yfwe1")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Train2" unique_id=93944978]
+position = Vector2(-130, -30)
+texture = ExtResource("7_p3j2p")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Train2" unique_id=1584260496]
+position = Vector2(-430, 9)
+texture = ExtResource("8_mpwkm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Train2" unique_id=1797695259]
+position = Vector2(315, 0)
+shape = SubResource("RectangleShape2D_rlwt4")
+
+[connection signal="send_train1" from="." to="." method="_on_send_train_1"]
+[connection signal="send_train1" from="." to="Train1" method="_send_train1"]
+[connection signal="send_train1" from="." to="Train1" method="_on_node_2d_send_train_1"]
+[connection signal="send_train1" from="." to="Train2" method="_send_train2"]
+[connection signal="send_train1" from="." to="Train2" method="_on_node_2d_send_train_2"]
+[connection signal="send_train1" from="." to="Train2" method="_on_node_2d_send_train_1"]
+[connection signal="Buffer1fixed" from="Button2" to="." method="_on_button_2_buffer_1_fixed"]
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
+[connection signal="Buffer2fixed" from="Button" to="." method="_on_button_buffer_2_fixed"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
