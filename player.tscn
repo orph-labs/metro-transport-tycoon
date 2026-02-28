@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://ban1ptrgubuce"]
 
 [ext_resource type="Script" uid="uid://41jo5nwg5c3w" path="res://character_body_2d.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://o4r5b4aptryt" path="res://player.png" id="2_onrkg"]
-[ext_resource type="Texture2D" uid="uid://co611fbk5q87v" path="res://rail.png" id="3_i3pqv"]
+[ext_resource type="Texture2D" path="res://player.png" id="2_onrkg"]
+[ext_resource type="Texture2D" path="res://rail.png" id="3_i3pqv"]
 [ext_resource type="Script" uid="uid://bguhvmviabman" path="res://train_move.gd" id="4_1jxqw"]
-[ext_resource type="Texture2D" uid="uid://co7s5rwg07lkl" path="res://train_front.png" id="4_2hs0m"]
-[ext_resource type="Texture2D" uid="uid://cnhj2v6jb0qly" path="res://train.png" id="5_1jxqw"]
-[ext_resource type="Texture2D" uid="uid://bi1bx6ta7k0it" path="res://train_back.png" id="6_dw050"]
+[ext_resource type="Texture2D" path="res://train_front.png" id="4_2hs0m"]
+[ext_resource type="Texture2D" path="res://train.png" id="5_1jxqw"]
+[ext_resource type="Texture2D" path="res://train_back.png" id="6_dw050"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jxqw"]
 size = Vector2(185, 158)
@@ -78,9 +78,18 @@ position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_1jxqw")
 
 [node name="Label" type="Label" parent="." unique_id=899504221]
-offset_left = -513.0
-offset_top = -203.0
-offset_right = -454.0
-offset_bottom = -180.0
-scale = Vector2(6.5200005, 6.5200005)
+offset_left = -554.0
+offset_top = -306.0
+offset_right = -495.0
+offset_bottom = -283.0
+scale = Vector2(2.8000002, 2.8000002)
 text = "LEVEL 1"
+
+[node name="Label2" type="Label" parent="." unique_id=391455179]
+offset_left = -205.00002
+offset_top = -297.0
+offset_right = -22.000015
+offset_bottom = -248.0
+scale = Vector2(2.8, 2.8)
+text = "OBJECTIVE
+Finish the subway track"
