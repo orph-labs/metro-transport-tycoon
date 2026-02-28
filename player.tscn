@@ -20,13 +20,12 @@ script/source = "extends Button
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-@onready
-var TrackToBeChanged = $\"../TrackToBeChanged\"
+
+@onready var TrackToBeChanged = $\"../TrackToBeChanged\"
 
 # Called every frame. 'delta' is thet =lapsed time since the previous frame.
 func _process(delta: float) -> void:
-	hide()
-	TrackToBeChanged.show()
+	
 	
 	
 		
@@ -34,7 +33,11 @@ func _process(delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
-	set_process(not is_processing())
+	hide()
+	if TrackToBeChanged:
+		TrackToBeChanged.show()
+		print(\"track shown\")
+		print(TrackToBeChanged.visible)
 	pass # Replace with function body.
 "
 
@@ -58,6 +61,7 @@ position = Vector2(319, 0)
 texture = ExtResource("3_i3pqv")
 
 [node name="Train" type="StaticBody2D" parent="." unique_id=305883468]
+z_index = 10
 position = Vector2(-916, -105)
 script = ExtResource("4_1jxqw")
 
@@ -100,6 +104,7 @@ Finish the subway track"
 [node name="CharacterBody2D2" parent="." unique_id=492532085 instance=ExtResource("6_2hs0m")]
 
 [node name="Button" type="Button" parent="." unique_id=1203919744]
+z_index = 4
 offset_left = 197.0
 offset_top = -100.0
 offset_right = 272.0
@@ -110,25 +115,29 @@ icon = SubResource("MeshTexture_2hs0m")
 script = SubResource("GDScript_2hs0m")
 
 [node name="TrackToBeChanged" type="StaticBody2D" parent="." unique_id=128224641]
-position = Vector2(236, -105)
+visible = false
+position = Vector2(235, -105)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrackToBeChanged" unique_id=1838592174]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="TrackToBeChanged" unique_id=339697651]
-position = Vector2(319, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TrackToBeChanged/StaticBody2D" unique_id=25353880]
-
-[node name="Sprite2D" type="Sprite2D" parent="TrackToBeChanged/StaticBody2D" unique_id=1782216279]
+[node name="Sprite2D" type="Sprite2D" parent="TrackToBeChanged" unique_id=1099679976]
 texture = ExtResource("3_i3pqv")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="TrackToBeChanged/StaticBody2D" unique_id=1860636931]
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=339697651]
+position = Vector2(554, -105)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=25353880]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2" unique_id=1782216279]
+texture = ExtResource("3_i3pqv")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D2" unique_id=1860636931]
 visible = false
 position = Vector2(-319, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TrackToBeChanged/StaticBody2D/StaticBody2D" unique_id=18375378]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/StaticBody2D" unique_id=18375378]
 
-[node name="Sprite2D" type="Sprite2D" parent="TrackToBeChanged/StaticBody2D/StaticBody2D" unique_id=959222626]
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2/StaticBody2D" unique_id=959222626]
 texture = ExtResource("3_i3pqv")
 
 [connection signal="pressed" from="Button" to="Button" method="_on_button_pressed"]
